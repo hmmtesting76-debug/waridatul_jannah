@@ -75,7 +75,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-2">
-          <LanguageToggle language={language} setLanguage={setLanguage} />
+          <LanguageToggle language={language} setLanguage={setLanguage} label={t.nav.language} />
           <a
             href="#kontak"
             className="inline-flex items-center px-4 py-2 rounded-full bg-[#292524] text-white text-sm font-medium font-[Outfit] hover:bg-[#3c3836] transition-colors shrink-0"
@@ -143,7 +143,7 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <LanguageToggle language={language} setLanguage={setLanguage} />
+          <LanguageToggle language={language} setLanguage={setLanguage} label={t.nav.language} />
           <a
             href="#kontak"
             onClick={() => setMenuOpen(false)}
@@ -160,12 +160,14 @@ export default function Navbar() {
 function LanguageToggle({
   language,
   setLanguage,
+  label,
 }: {
   language: "id" | "en";
   setLanguage: (language: "id" | "en") => void;
+  label: string;
 }) {
   return (
-    <div className="flex items-center gap-1 rounded-full bg-stone-100 p-1" aria-label="Pilih bahasa">
+    <div className="flex items-center gap-1 rounded-full bg-stone-100 p-1" aria-label={label}>
       {(["id", "en"] as const).map((option) => (
         <button
           key={option}
