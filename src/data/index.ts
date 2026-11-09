@@ -40,7 +40,7 @@ export const experienceData = [
   {
     id: "exp-1",
     position: "UI/UX Designer",
-    company: "PT Kreasi Digital Nusantara",
+    company: "PT Aguna ",
     period: "Jan 2024 – Sekarang",
     color: "sage" as const,
     achievements: [
@@ -83,7 +83,7 @@ export const portfolioData = [
     caseStudyUrl: "#",
     projectUrl: "https://toko-retail-fashion-template-2.vercel.app/",
     tools: [
-      { name: "Figma", icon: "/images/tools/figma.svg" },
+      { name: "Figma", icon: "/images/tools/nextjs.png" },
       { name: "Illustrator", icon: "/images/tools/illustrator.svg" },
       { name: "Maze", icon: "/images/tools/maze.svg" },
       { name: "Notion", icon: "/images/tools/notion.svg" },

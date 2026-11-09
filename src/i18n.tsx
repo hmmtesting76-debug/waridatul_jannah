@@ -246,11 +246,16 @@ export function getLocalizedData(language: Language) {
     bioData: { ...bioData, ...englishBio },
     educationData: educationData.map((item, index) => ({ ...item, ...englishEducation[index] })),
     experienceData: experienceData.map((item, index) => ({ ...item, ...englishExperience[index] })),
-    portfolioData: portfolioData.map((item, index) => ({
-      ...item,
-      ...englishPortfolio[index],
-      caseStudy: { points: englishPortfolio[index].points },
-    })),
+    portfolioData: portfolioData.map((item, index) => {
+      const translation = englishPortfolio[index];
+      if (!translation) return item;
+
+      return {
+        ...item,
+        ...translation,
+        caseStudy: { points: translation.points },
+      };
+    }),
     certificatesData,
   };
 }
