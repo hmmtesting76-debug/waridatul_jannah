@@ -102,9 +102,6 @@ export default function ContactSection() {
           data-reveal="up"
           style={{ transitionDelay: "0.4s" }}
         >
-          <SocialLink href={socialLinks.behance} label="Behance">
-            <BehanceIcon />
-          </SocialLink>
           <SocialLink href={socialLinks.instagram} label="Instagram">
             <InstagramIcon />
           </SocialLink>
@@ -149,12 +146,6 @@ function SocialLink({
     </a>
   );
 }
-
-const BehanceIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 1.202.836 1.887 2.179 1.887.874 0 1.452-.343 1.822-1.058l1.755.2zM15.998 13h3.455c-.069-1.347-.801-2.1-1.737-2.1-.978 0-1.598.754-1.718 2.1zm-9.936 2.558c.654-.075 1.075-.288 1.359-.731.284-.443.428-1.141.428-2.098 0-.957-.13-1.713-.39-2.277s-.601-.858-1.021-.882H3.998v5.988l2.064.000zm-2.065 1.967V22H0V2h7.498c.878 0 1.645.158 2.291.467.645.308 1.172.747 1.577 1.313.4.56.638 1.213.715 1.954.075.741.016 1.47-.176 2.188-.19.718-.538 1.323-1.034 1.796-.497.47-1.056.776-1.68.918.724.138 1.325.456 1.796.959.47.503.738 1.197.808 2.08.067.882.012 1.73-.165 2.564-.178.837-.528 1.555-1.047 2.144-.521.59-1.19.993-2.004 1.219-.812.226-1.792.333-2.936.333H3.997z" />
-  </svg>
-);
 
 const InstagramIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
