@@ -46,6 +46,41 @@ const ToolIcon = ({ name, src }: { name: string; src: string }) => {
   );
 };
 
+function ProjectImage({ src, alt, label }: { src: string; alt: string; label: string }) {
+  const [imageError, setImageError] = useState(false);
+
+  return (
+    <>
+      <Image
+        src={src}
+        alt=""
+        fill
+        sizes="(max-width: 640px) 90vw, 600px"
+        loading="lazy"
+        aria-hidden="true"
+        className="scale-110 object-cover opacity-40 blur-xl"
+      />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 640px) 90vw, 600px"
+        loading="lazy"
+        className="object-contain p-2 drop-shadow-xl"
+        onError={() => setImageError(true)}
+      />
+      {imageError && (
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ background: "linear-gradient(135deg,#a78b71 0%,#78716C 100%)" }}
+        >
+          <span className="text-white/60 font-[Outfit] text-sm">{label}</span>
+        </div>
+      )}
+    </>
+  );
+}
+
 // ─── Parse title with *highlighted* words ─────────────────────────────────────
 function ParsedTitle({ raw }: { raw: string }) {
   const parts = raw.split(/(\*[^*]+\*)/g);
@@ -175,8 +210,6 @@ function ProjectDetailModal({
   onClose: () => void;
   labels: ReturnType<typeof useLanguage>["t"]["portfolio"];
 }) {
-  const [imageError, setImageError] = useState(false);
-
   useEffect(() => {
     if (!project) return;
     const handler = (event: KeyboardEvent) => {
@@ -201,20 +234,12 @@ function ProjectDetailModal({
         className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="relative aspect-video bg-stone-100">
-          <Image
+        <div className="relative aspect-[4/3] bg-stone-100 sm:aspect-video">
+          <ProjectImage
             src={project.image}
             alt={`${labels.image}: ${project.projectTitle}`}
-            fill
-            className="object-cover"
-            loading="lazy"
-            onError={() => setImageError(true)}
+            label={labels.image}
           />
-          {imageError && (
-            <div className="absolute inset-0 flex items-center justify-center text-sm text-stone-400">
-              {labels.image}
-            </div>
-          )}
         </div>
         <div className="p-6 sm:p-8">
           <p className="mb-1 text-xs text-stone-400">
@@ -271,7 +296,6 @@ function PortfolioSlide({
 }) {
   const nodeRef = useRef<HTMLDivElement>(null);
   const satRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [imageError, setImageError] = useState(false);
 
   return (
     <div
@@ -287,9 +311,9 @@ function PortfolioSlide({
 
       {/* Top headline */}
       <h2
-        className="font-playfair italic text-center mb-8 relative z-10 max-w-2xl"
+        className="font-playfair italic text-center mb-6 relative z-10 max-w-2xl"
         style={{
-          fontSize: "clamp(2rem, 6vw, 4.5rem)",
+          fontSize: "clamp(1.5rem, 4vw, 3rem)",
           color: "#F5F0E8",
           lineHeight: 1.15,
         }}
@@ -357,29 +381,17 @@ function PortfolioSlide({
         {/* Central node card */}
         <div
           ref={nodeRef}
-          className="glass-card relative z-10 overflow-hidden hover:scale-[1.02] transition-transform duration-500"
+          className="glass-card relative z-10 aspect-[4/3] w-full overflow-hidden transition-transform duration-500 hover:scale-[1.02] sm:aspect-video"
           style={{
-            width: "min(100%, 480px)",
-            aspectRatio: "16/9",
+            width: "min(100%, 600px)",
             boxShadow: "0 0 40px rgba(167,139,113,0.15)",
           }}
         >
-          <Image
+          <ProjectImage
             src={project.image}
             alt={`${labels.image}: ${project.projectTitle}`}
-            fill
-            className="object-cover"
-            loading="lazy"
-            onError={() => setImageError(true)}
+            label={labels.image}
           />
-          {imageError && (
-            <div
-              className="absolute inset-0 flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg,#a78b71 0%,#78716C 100%)" }}
-            >
-              <span className="text-white/60 font-[Outfit] text-sm">{labels.image}</span>
-            </div>
-          )}
         </div>
 
         {/* Mobile bottom sats */}

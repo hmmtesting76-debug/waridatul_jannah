@@ -37,13 +37,23 @@ function CertModal({
         className="relative bg-white rounded-3xl overflow-hidden max-w-lg w-full shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="aspect-video relative bg-stone-100">
+        <div className="relative aspect-[4/3] bg-stone-100 sm:aspect-video">
+          <Image
+            src={cert.image}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 90vw, 512px"
+            loading="lazy"
+            aria-hidden="true"
+            className="scale-110 object-cover opacity-40 blur-xl"
+          />
           <Image
             src={cert.image}
             alt={cert.name}
             fill
-            className="object-cover"
+            sizes="(max-width: 640px) 90vw, 512px"
             loading="lazy"
+            className="object-contain p-2 drop-shadow-xl"
             onError={() => setImageError(true)}
           />
           {imageError && (
