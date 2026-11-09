@@ -228,16 +228,16 @@ function ProjectDetailModal({
             {labels.information}
           </h3>
           <ul className="mt-3 space-y-3 text-sm leading-relaxed text-stone-600">
-            {project.caseStudy.points.map((point) => (
-              <li key={point} className="flex gap-3">
+            {project.caseStudy.points.map((point, index) => (
+              <li key={`${project.id}-point-${index}`} className="flex gap-3">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#a78b71]" aria-hidden="true" />
                 <span>{point}</span>
               </li>
             ))}
           </ul>
           <div className="mt-6 flex flex-wrap gap-2">
-            {project.tools.map((tool) => (
-              <span key={tool.name} className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600">
+            {project.tools.map((tool, index) => (
+              <span key={`${project.id}-tool-${index}`} className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600">
                 {tool.name}
               </span>
             ))}
@@ -312,7 +312,7 @@ function PortfolioSlide({
             const pos = SAT_POSITIONS_DESKTOP[i] ?? { top: "50%", left: "50%", delay: "0s" };
             return (
               <div
-                key={tool.name}
+                key={`${project.id}-tool-${i}`}
                 ref={(el) => { satRefs.current[i] = el; }}
                 className="absolute w-14 h-14 glass-card flex flex-col items-center justify-center gap-1 cursor-default"
                 style={{
@@ -341,7 +341,7 @@ function PortfolioSlide({
         >
           {project.tools.slice(0, 4).map((tool, i) => (
             <div
-              key={tool.name}
+              key={`${project.id}-tool-${i}`}
               ref={(el) => { satRefs.current[i] = el; }}
               className="w-11 h-11 glass-card flex items-center justify-center rounded-full"
               style={{ animation: `floatSat 6s ease-in-out ${i * 0.4}s infinite` }}
@@ -389,7 +389,7 @@ function PortfolioSlide({
         >
           {project.tools.slice(4).map((tool, i) => (
             <div
-              key={tool.name}
+              key={`${project.id}-tool-${i + 4}`}
               ref={(el) => { satRefs.current[4 + i] = el; }}
               className="w-11 h-11 glass-card flex items-center justify-center rounded-full"
               style={{ animation: `floatSat 6s ease-in-out ${(4 + i) * 0.4}s infinite` }}
